@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <video autoplay loop muted playsinline style="width:7%; padding-bottom:20%;position:relative; left: 680px; top: 180px;"> <source src="./imagens/ezgif.com-gif-maker (1).mp4"> </video>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            height: 1000px;
+        }
+        #numero_tentativas{
+            position: absolute;
+            top: 2px;
+            left: 8%;
+            font-size: 25px;
+            background: none;
+            border: none;
+        }
+        #label_numero_tentativas{
+            position: absolute;
+            top: 0;
+            left: 2px;
+            font-size: 25px;
+            border: none;
+        }
+        #range_value{
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 25px;
+            width: 60px;
+            border: none;
+        }
+        #creditos{
+            position:fixed;
+            right: 10px;
+            top: 2%;
+            width: 110px;
+            border: 3px solid #00e4c5;
+            padding: 10px;
+        }
+        #fund_creditos{
+            position:fixed;
+            right: 10px;
+            top: 10%;
+            cursor: pointer;
+        }
+        #creditos, #creditos_result{
+            display: inline;
+        }
+        datalist {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          writing-mode:sideways-lr;
+          width: 200px;
+        }
+        option {
+          padding: 0;
+        }
+        #range{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+        input[type=range] {
+             height: 32px;
+             margin: 10px 0;
+             width: 65%;
+             background-color: transparent;
+             -webkit-appearance: none;
+        }
+        input[type=range] {
+             height: 32px;
+             margin: 10px 0;
+             width: 65%;
+
+        }
+        input[type=range]:focus {
+             outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+             background: #ff364c;
+             border: 0.7px solid #000001;
+             border-radius: 19.3px;
+             width: 100%;
+             height: 11.3px;
+             cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-thumb {
+             margin-top: -11.55px;
+             width: 30px;
+             height: 33px;
+             background: #ffffff;
+             border: 0.5px solid #000000;
+             border-radius: 8px;
+             cursor: pointer;
+             -webkit-appearance: none;
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+             background: #ff3b51;
+        }
+        input[type=range]::-moz-range-track {
+             background: #ff364c;
+             border: 0.7px solid #000001;
+             border-radius: 19.3px;
+             width: 100%;
+             height: 11.3px;
+             cursor: pointer;
+        }
+        input[type=range]::-moz-range-thumb {
+             width: 30px;
+             height: 33px;
+             background: #ffffff;
+             border: 0.5px solid #000000;
+             border-radius: 8px;
+             cursor: pointer;
+        }
+        input[type=range]::-ms-track {
+             background: transparent;
+             border-color: transparent;
+             border-width: 11.85px 0;
+             color: transparent;
+             width: 100%;
+             height: 11.3px;
+             cursor: pointer;
+        }
+        input[type=range]::-ms-fill-lower {
+             background: #ff3147;
+             border: 0.7px solid #000001;
+             border-radius: 38.6px;
+        }
+        input[type=range]::-ms-fill-upper {
+             background: #ff364c;
+             border: 0.7px solid #000001;
+             border-radius: 38.6px;
+        }
+        input[type=range]::-ms-thumb {
+             width: 30px;
+             height: 33px;
+             background: #ffffff;
+             border: 0.5px solid #000000;
+             border-radius: 8px;
+             cursor: pointer;
+             margin-top: 0px;
+        }
+        input[type=range]:focus::-ms-fill-lower {
+             background: #ff364c;
+        }
+        input[type=range]:focus::-ms-fill-upper {
+             background: #ff3b51;
+        }
+@supports (-ms-ime-align:auto) {
+        input[type=range] {
+             margin: 0;
+         }
+        }
+        #zona_de_aposta{
+            display: flex;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #output_predicao{
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #predicao_real{
+            width: 700px;
+            height: 250px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display:inline;
+        }
+        #label_predicao{
+            position: relative;
+            top: 50%;
+            left: 11.5%;
+            font-size: 30px;
+        }
+        #label_real_value{
+            position: relative;
+            top: 50%;
+            left: 45%;
+            font-size: 30px;
+            background: none;
+
+        }
+        #range_value{
+            width: 100px;
+            height: 50px;
+            font-size: 50px;
+            font-family:fantasy;
+            position: relative;
+            top: 40%;
+            left: 20%;
+            text-align: center;
+        }
+        #real_value{
+            border: none;
+            width: 100px;
+            height: 50px;
+            font-size: 50px;
+            font-family:fantasy;
+            position: relative;
+            top: 30%;
+            left: 53%;
+            text-align: center;
+        }
+        #aposta_btn{
+            width: 200px;
+            text-align: center;
+            background-color:#006eff ;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            margin-left: 5px;
+        }
+        #aposta_btn:hover{
+            box-shadow: 0 5px 5px;
+            cursor: pointer;
+        }
+        #valor_aposta{
+            height: 32px;
+            width: 200px;
+            border: 0.1px solid black;
+            border-radius: 2px;
+        }
+        .popup{
+            width: 400px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);       
+            text-align: center;
+            padding: 0 30px 30px; 
+            color: #333;
+            border: 0.5px solid #333;
+            box-shadow: 0 5px 5px;
+            visibility: hidden;
+            transition: transform 0.5s, top 0.5s;
+        }
+        .x_btn{
+            border: none;
+            width: 20px;
+            height: 20px;
+            transform: translate(-50%, -50%) scale(2);;
+            box-shadow: none;
+            position: absolute;
+            left: 96%;
+            top: 10%;
+            background: none;
+            cursor: pointer;
+
+        }
+        .popup h1{
+            color: #ff0000;
+        }
+        .popup input{
+            border: .01px solid black;
+            border-radius: 3px;
+        }
+        #ok_btn{
+            width:50px;
+            padding: 2px;
+            background: #ffffff;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        .open-popup{
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);    
+        }
+        .sec_popup{
+            width: 400px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);       
+            text-align: center;
+            padding: 0 30px 30px; 
+            color: #333;
+            border: 0.5px solid #333;
+            box-shadow: 0 5px 5px;
+            visibility: hidden;
+        }
+        .sec_popup img{
+            width: 100px;;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        .sec_popup h1{
+            color:#333;
+        }
+        .sec_popup input{
+            border: .01px solid black;
+            border-radius: 3px;
+        }
+        .sec_popup button{
+            width:300px;
+            margin-top: 30px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        .open_sec_popup{
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);    
+        }
+        #ajust_value{
+            visibility: hidden;
+        }
+
+        .ter_popup{
+            width: 400px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);       
+            text-align: center;
+            padding: 0 30px 30px; 
+            color: #333;
+            border: 0.5px solid #333;
+            box-shadow: 0 5px 5px;
+            visibility: hidden;
+            transition: tranform 0.5s, top 0.5s;
+        }
+        .ter_popup button{
+            margin-left: 0 auto;
+            margin-right: 0 auto;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .ter_popup h1 {
+            color: #ff0000;
+        }
+        .ter_popup input{
+            border: .01px solid black;
+            border-radius: 3px;
+        }
+        .ter_pop_carregar_btn{
+            width:50px;
+            padding: 2px;
+            background: #ffffff;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .open_ter_popup{
+            visibility: visible;
+            top: 52%;
+            transform: translate(-50%, -50%) scale(1);    
+            
+        }
+        .aposta_btn_over{
+            pointer-events:none;
+        }
+        .aposta_btn_again{
+            pointer-events: all;
+        }
+        .aposta_lost{
+            background:#ff0000 ;
+            box-shadow: 0 0 5px rgb(255, 0, 0),
+                 0px 0px 20px rgb(255, 0, 0), 
+                 -10px 0 40px rgb(255, 0, 0), 
+                 -30px 0 55px rgb(255, 0, 0), 
+                 -30px 10px 55px rgb(255, 0, 0),
+                 -30px 25px 70px rgb(255, 0, 0),
+                 -30px 35px 80px rgb(255, 0, 0),
+                 -30px -10px 55px rgb(255, 0, 0),
+                 -30px -25px 70px rgb(255, 0, 0),
+                 -30px -35px 80px rgb(255, 0, 0),
+                 -30px 35px 80px rgb(255, 0, 0),
+                 0px 10px 30px rgb(255, 0, 0),
+                 0px 25px 70px rgb(255, 0, 0),
+                 0px 35px 80px rgb(255, 0, 0),
+                 0px -10px 30px rgb(255, 0, 0),
+                 0px -25px 70px rgb(255, 0, 0),
+                 30px 0 55px rgb(255, 0, 0), 
+                 30px 10px 55px rgb(255, 0, 0),
+                 30px 25px 70px rgb(255, 0, 0),
+                 30px 35px 80px rgb(255, 0, 0),
+                 30px -10px 55px rgb(255, 0, 0),
+                 30px -25px 70px rgb(255, 0, 0),
+                 30px -35px 80px rgb(255, 0, 0),
+                 30px 35px 80px rgb(255, 0, 0);
+        }
+
+        .aposta_won{
+            background:#73ff00 ;
+            box-shadow: 0 0 5px rgb(94, 255, 0),
+                 0px 0px 20px rgb(94, 255, 0), 
+                 -10px 0 40px rgb(94, 255, 0), 
+                 -30px 0 55px rgb(94, 255, 0), 
+                 -30px 10px 55px rgb(94, 255, 0),
+                 -30px 25px 70px rgb(94, 255, 0),
+                 -30px 35px 80px rgb(94, 255, 0),
+                 -30px -10px 55px rgb(94, 255, 0),
+                 -30px -25px 70px rgb(94, 255, 0),
+                 -30px -35px 80px rgb(94, 255, 0),
+                 -30px 35px 80px rgb(94, 255, 0),
+                 0px 10px 30px rgb(94, 255, 0),
+                 0px 25px 70px rgb(94, 255, 0),
+                 0px 35px 80px rgb(94, 255, 0),
+                 0px -10px 30px rgb(94, 255, 0),
+                 0px -25px 70px rgb(94, 255, 0),
+                 30px 0 55px rgb(94, 255, 0), 
+                 30px 10px 55px rgb(94, 255, 0),
+                 30px 25px 70px rgb(94, 255, 0),
+                 30px 35px 80px rgb(94, 255, 0),
+                 30px -10px 55px rgb(94, 255, 0),
+                 30px -25px 70px rgb(94, 255, 0),
+                 30px -35px 80px rgb(94, 255, 0),
+                 30px 35px 80px rgb(94, 255, 0);
+        }
+
+    </style>
+
+</head>
+<body>
+    <script>
+        let popup = document.getElementById("popup");
+        let carregar_fundos_Value = document.getElementById("carregar_fundos_Value");
+        var creditos_result = document.getElementById("creditos_result");
+        var ok_btn = document.getElementById("ok_btn");
+        var real_value = document.getElementById("real_value");  
+
+        function open_popup(){
+            document.getElementById("popup").classList.add("open-popup");
+        }
+
+        function open_sec_popup(){
+            document.getElementById("sec_popup").classList.add("open_sec_popup");
+        }
+
+        function close_popup(){
+            document.getElementById("popup").classList.remove("open-popup");
+        }
+
+        function close_popup_2(){
+            document.getElementById("sec_popup").classList.remove("open_sec_popup");
+        }
+        
+        function open_ter_popup() {
+            document.getElementById("ter_popup").classList.add("open_ter_popup");
+        }
+
+        function close_popup_3() {
+            document.getElementById("ter_popup").classList.remove("open_ter_popup");
+        }
+
+        function carregar_fundos(){
+
+            if (document.getElementById("carregar_fundos_Value").value > 9999) {
+                alert("o máximo por transferência é 9999")
+                document.getElementById("carregar_fundos_Value").value = ""
+                
+            }else if (document.getElementById("carregar_fundos_Value").value >= 1) {
+                document.getElementById("creditos_result").innerHTML = document.getElementById("carregar_fundos_Value").value
+                document.getElementById("carregar_fundos_Value").value = ""
+            
+            }else if (document.getElementById("carregar_fundos_Value").value < 0){
+                close_popup_2()
+                open_popup()
+                alert("A quantia não pode ser negativa!");
+                document.getElementById("creditos_result").innerHTML = 0
+                document.getElementById("carregar_fundos_Value").value = ""
+                
+            }else {
+                alert("Introduza crédito para apostar");
+                document.getElementById("creditos_result").innerHTML = 0
+                document.getElementById("carregar_fundos_Value").value = ""
+                
+            }
+        }
+        function decrease() {
+            document.getElementById("creditos_result").innerHTML = document.getElementById("creditos_result").value
+            var data = document.getElementById("creditos_result");
+                data.value = data.innerHTML - document.getElementById("valor_aposta").value;
+                document.getElementById("creditos_result").value = data.value;
+        }
+        function increase() {
+            document.getElementById("creditos_result").innerHTML = document.getElementById("creditos_result").value
+            var data = document.getElementById("creditos_result");
+                data.value = data.innerHTML - (- document.getElementById("valor_aposta").value);
+                document.getElementById("creditos_result").value = data.value;
+        }
+
+        function red_sombra_on() {
+            document.getElementById("real_value").classList.add("aposta_lost");
+        }
+        function green_sombra_on() {
+            document.getElementById("real_value").classList.add("aposta_won");
+        }
+
+        function red_sombra_off() {
+            document.getElementById("real_value").classList.remove("aposta_lost");
+        }
+        function green_sombra_off() {
+            document.getElementById("real_value").classList.remove("aposta_won");
+        }
+
+        function apostar() {
+            var data = document.getElementById("creditos_result");
+            data.value = data.innerHTML - document.getElementById("valor_aposta").value;
+            creditos_result = document.getElementById("creditos_result");
+            document.getElementById("creditos_result").innerHTML = document.getElementById("creditos_result").value
+
+            console.log(document.getElementById("creditos_result").value)
+            
+            if (document.getElementById("creditos_result").value <= 0) {
+                open_ter_popup();
+
+            }else if (document.getElementById("valor_aposta").value > document.getElementById("creditos_result").value) {
+                open_ter_popup();
+
+            }else if (document.getElementById("valor_aposta").value > 0 && document.getElementById("valor_aposta").value <= document.getElementById("creditos_result").value ) {
+                document.getElementById("real_value").value = Math.floor(Math.random() * 100) + 1;
+                    if (document.getElementById("creditos_result").value <= 0) {
+                        document.getElementById("creditos_result").value = 0
+                        
+                    }else if (document.getElementById("real_value").value !== document.getElementById("range").value){
+                        decrease();
+                        increase_tentativas();
+                        red_sombra_on();
+                        green_sombra_off();
+                           
+                    }else if (document.getElementById("real_value").value == document.getElementById("range").value) {
+                        increase();
+                        descrease_tentativas();
+                        green_sombra_on();
+                        red_sombra_off();
+                  }
+            }
+        }
+        function increase_tentativas(){
+            var value = parseInt(document.getElementById('numero_tentativas').value, 10);
+                 if (document.getElementById("real_value").value !== document.getElementById("range").value) {
+                      value = isNaN(value) ? 0 : value;
+                      value++;
+                      document.getElementById('numero_tentativas').value = value;
+                    }
+            }
+        function descrease_tentativas() {
+            document.getElementById("numero_tentativas").value = 0
+            
+        }
+        
+        let (document.getElementById("creditos_result").value) = document.cookie
+        
+
+        
+        /*function safety() {
+            if (document.getElementById("creditos_result").value <= 0) {
+                document.getElementById("zona_de_aposta").classList.add("aposta_btn_over")
+
+            }else if(document.getElementById("creditos_result").value >= document.getElementById("valor_aposta").value){
+                document.getElementById("zona_de_aposta").classList.remove("aposta_btn_over")
+            }
+        }
+
+        function over() {
+            document.getElementById("zona_de_aposta").classList.add("aposta_btn_over")
+        }
+
+        
+
+       <datalist id="tickmarks">
+    <option value="0" label="0"></option>
+    <option value="25" label="25"></option>
+    <option value="50" label="50"></option>
+    <option value="75" label="75"></option>
+    <option value="100" label="100"></option>
+          </datalist>   */
+    </script>
+
+<label id="label_numero_tentativas" for="numero_tentativas">Tentativas:</label>
+<input type="number" id="numero_tentativas" value="0" readonly>
+
+<button type="submit" onclick="open_popup()" id="fund_creditos">Obter Créditos</button>
+
+<form id="output_2"  oninput="range_value.value = range.value"> 
+<form id="output_final" >
+    <div id="creditos">Créditos: &nbsp; <span id="creditos_result">0</div>
+    <input id="range" type="range" min="1" max="100" list="tickmarks" >
+<div id="output_predicao">
+    <div id="predicao_real">
+        <input type="number" id="range_value" class="predicao" value="50" readonly >
+        <input type="number" id="real_value" value="00" readonly> 
+        <br>
+        <label id="label_predicao" for="predicao">Predição</label>
+        <label id="label_real_value" for="real_value">Número da Sorte</label>
+    </div>
+</div>
+<div id="zona_de_aposta">
+   <span>&#8364<input type="number" id="valor_aposta" min="> 1" placeholder="0.00" onchange="javascript: if (document.getElementById('valor_aposta').value < 0) { alert('A quantia não pode ser negativa!')}"> </span>
+    <button type="button" id="aposta_btn" onclick="javascript: apostar()"><div style="font-size: 15px;">Aposta</div><div style="font-size: 11px;">Lucros sobre ganho:</div><span id="lucros_value"></span></button>
+</div>
+<div class="popup" id="popup">
+    <button type="button" id="x_btn" class="x_btn" onclick="close_popup()">X</button>
+    <h1><u> CRÉDITO </u></h1>
+    <h3>Introduza o montante desejado</h3>
+    <input id="carregar_fundos_Value" type="number" max="9999"><br><br>
+    <button id="ok_btn" type="button" onclick="javascript: if (carregar_fundos_Value.value > 9999)
+                                                                {alert('o máximo por transferência é 9999 &#8364')}
+                                                            else if (carregar_fundos_Value.value > 0) 
+                                                                {carregar_fundos(), open_sec_popup(), close_popup()} 
+                                                             else if(carregar_fundos_Value.value < 0)
+                                                                {alert('A quantia não pode ser negativa')}">OK!</button>
+</div>
+
+<div class="sec_popup" id="sec_popup">
+    <img src="./imagens/404-tick.png">
+    <h1>Ótimo!</h1>
+    <h3>Tranferência concluída com sucesso!</h3>
+    <button type="button" onclick="close_popup_2()">Apostar</button>
+</div>
+
+<div class="ter_popup" id="ter_popup">
+    <h1>Ups!</h1>
+    <h3> Parece que não tens créditos suficientes!</h3>
+    <button id="ter_pop_ok_btn" type="button" onclick="close_popup_3()">OK!</button>
+    <button id="ter_pop_carregar_btn" type="button" onclick="javascript: close_popup_3() , open_popup()">Carregar fundos</button>
+</div>
+</form>
+</form>
+
+</body>
+</html>
