@@ -1,6 +1,6 @@
 Cria uma solução HTML+JavaScript+CSS que crie uma situação de aposta em relação a um número gerado aleatoriamente.
 
-Requisitos: 
+Requisitos:
 carregar um valor monetário em euros (saldo);
 efetuar uma aposta com valor superior a 0 e desde que o jogador tenha saldo suficiente;
 gerar um número aleatório entre 1 e 100;
